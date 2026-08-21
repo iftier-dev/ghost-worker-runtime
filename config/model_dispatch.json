@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "updated_at": "2026-08-21",
+  "_comment": "Hot-reloaded on file mtime change -- edit and save, no restart needed anywhere (red-gpu, Colab worker, local agent sidecar, RunPod handler all read this same file/copy). Change 'default_model' or add entries under 'models' to control exactly which model downloads/runs for each task type, on every provider, without touching code.",
+  "task_types": {
+    "llm_inference": {
+      "default_model": "llama-3.1-8b",
+      "models": {
+        "llama-3.1-8b": {"min_vram_gb": 10, "loader": "llm_ollama", "repo": "llama3.1:8b"},
+        "mistral-7b":   {"min_vram_gb": 9,  "loader": "llm_ollama", "repo": "mistral:7b"}
+      }
+    },
+    "embedding": {
+      "default_model": "bge-large",
+      "models": {
+        "bge-large": {"min_vram_gb": 3, "loader": "embedding_hf", "repo": "BAAI/bge-large-en-v1.5"}
+      }
+    },
+    "image_generation": {
+      "default_model": "stable-diffusion-xl",
+      "models": {
+        "stable-diffusion-xl": {"min_vram_gb": 10, "loader": "image_diffusers", "repo": "stabilityai/stable-diffusion-xl-base-1.0", "pipeline_class": "StableDiffusionXLPipeline"},
+        "flux-schnell":        {"min_vram_gb": 16, "loader": "image_diffusers", "repo": "black-forest-labs/FLUX.1-schnell", "pipeline_class": "FluxPipeline"}
+      }
+    },
+    "image_to_image": {
+      "default_model": "stable-diffusion-xl-img2img",
+      "models": {
+        "stable-diffusion-xl-img2img": {"min_vram_gb": 10, "loader": "image_diffusers", "repo": "stabilityai/stable-diffusion-xl-base-1.0", "pipeline_class": "StableDiffusionXLImg2ImgPipeline"}
+      }
+    },
+    "inpainting": {
+      "default_model": "sdxl-inpainting",
+      "models": {
+        "sdxl-inpainting": {"min_vram_gb": 10, "loader": "image_diffusers", "repo": "diffusers/stable-diffusion-xl-1.0-inpainting-0.1", "pipeline_class": "StableDiffusionXLInpaintPipeline"}
+      }
+    },
+    "image_upscale": {
+      "default_model": "real-esrgan-x4",
+      "models": {
+        "real-esrgan-x4": {"min_vram_gb": 4, "loader": "image_upscale", "repo": "ai-forever/Real-ESRGAN"}
+      }
+    },
+    "video_generation": {
+      "default_model": "animatediff",
+      "models": {
+        "animatediff":            {"min_vram_gb": 14, "loader": "video_diffusers", "repo": "guoyww/animatediff-motion-adapter-v1-5-2", "pipeline_class": "AnimateDiffPipeline"},
+        "stable-video-diffusion": {"min_vram_gb": 18, "loader": "video_diffusers", "repo": "stabilityai/stable-video-diffusion-img2vid-xt", "pipeline_class": "StableVideoDiffusionPipeline"}
+      }
+    },
+    "image_to_video": {
+      "default_model": "stable-video-diffusion",
+      "models": {
+        "stable-video-diffusion": {"min_vram_gb": 18, "loader": "video_diffusers", "repo": "stabilityai/stable-video-diffusion-img2vid-xt", "pipeline_class": "StableVideoDiffusionPipeline"}
+      }
+    },
+    "video_upscale": {
+      "default_model": "real-esrgan-video",
+      "models": {
+        "real-esrgan-video": {"min_vram_gb": 8, "loader": "video_upscale", "repo": "ai-forever/Real-ESRGAN"}
+      }
+    },
+    "tts": {
+      "default_model": "xtts-v2",
+      "models": {
+        "xtts-v2":  {"min_vram_gb": 8, "loader": "tts_coqui", "repo": "coqui/XTTS-v2"},
+        "edge-tts": {"min_vram_gb": 0, "loader": "tts_edge",  "repo": null}
+      }
+    },
+    "visual_click_grounding": {
+      "default_model": "qwen2-vl-7b-grounding",
+      "models": {
+        "qwen2-vl-7b-grounding": {"min_vram_gb": 10, "loader": "vision_grounding", "repo": "Qwen/Qwen2-VL-7B-Instruct"}
+      }
+    },
+    "vision_analyze": {
+      "default_model": "qwen2-vl-7b",
+      "models": {
+        "qwen2-vl-7b": {"min_vram_gb": 10, "loader": "vision_qwen", "repo": "Qwen/Qwen2-VL-7B-Instruct"},
+        "llava-1.6-mistral-7b": {"min_vram_gb": 10, "loader": "vision_llava", "repo": "llava-hf/llava-v1.6-mistral-7b-hf"}
+      }
+    },
+    "speech_to_text": {
+      "default_model": "whisper-large-v3",
+      "models": {
+        "whisper-large-v3": {"min_vram_gb": 6, "loader": "stt_whisper", "repo": "openai/whisper-large-v3"}
+      }
+    },
+    "voice_clone": {
+      "default_model": "xtts-v2-clone",
+      "models": {
+        "xtts-v2-clone": {"min_vram_gb": 8, "loader": "tts_coqui_clone", "repo": "coqui/XTTS-v2"}
+      }
+    }
+  },
+  "default_min_vram_gb": 4.0,
+  "_default_comment": "Used when a requested model_name isn't found in the table above -- fails safe toward a small VRAM requirement rather than rejecting the task outright."
+}
