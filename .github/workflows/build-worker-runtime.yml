@@ -1,0 +1,26 @@
+name: Build and Release worker_runtime
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Package worker_runtime
+        run: |
+          mkdir -p dist
+          zip -r dist/worker_runtime.zip worker_runtime config/model_dispatch.json
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/worker_runtime.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
