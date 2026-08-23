@@ -1,15 +1,7 @@
-
 {
-
-  "BACKEND_URL": "https://viewing-film-detected-temperatures.trycloudflare.com",
-
+  "BACKEND_URL": " https://likelihood-terminology-terminals-llp.trycloudflare.com",
   "NGROK_AUTH_TOKEN": "3IKgzTXYmzpNx8S1eF3cGCvFaRl_7bzS9BdwEDXCM9WgKcXZJ",
-
   "NODE_ID": null,
-
   "HEARTBEAT_INTERVAL_SEC": 20,
-
   "TASK_TYPES": ["llm", "tts", "img"]
-
 }
-
