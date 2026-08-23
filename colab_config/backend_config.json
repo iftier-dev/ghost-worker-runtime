@@ -1,7 +1,15 @@
+
 {
+
   "BACKEND_URL": "https://legislation-usb-backup-actor.trycloudflare.com",
-  "NGROK_AUTH_TOKEN": "",
+
+  "NGROK_AUTH_TOKEN": "3IKgzTXYmzpNx8S1eF3cGCvFaRl_7bzS9BdwEDXCM9WgKcXZJ",
+
   "NODE_ID": null,
+
   "HEARTBEAT_INTERVAL_SEC": 20,
+
   "TASK_TYPES": ["llm", "tts", "img"]
+
 }
+
